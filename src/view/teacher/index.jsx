@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function Teacher() {
-  return (
-    <h1>Teacher</h1>
-  )
+  return <h1>Teacher</h1>;
 }

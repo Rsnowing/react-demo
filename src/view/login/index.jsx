@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import '../../common/css/login.css';
-import LoginBox from './login';
+import React, { useState } from "react";
+import "../../common/css/login.css";
+import LoginBox from "./login";
 import RegisterBox from "./register";
-import Frame from '../../common/components/frame';
+import Frame from "../../common/components/frame";
 
 export default function Login() {
-  const [deg,setDeg] = useState(0);
+  const [deg, setDeg] = useState(0);
   return (
     <Frame>
       <div id="login_boxWrap">
@@ -16,11 +16,11 @@ export default function Login() {
           <div
             className="box"
             style={{
-              transform: `rotateY(${deg}deg)`,
+              transform: `rotateY(${deg}deg)`
             }}
           >
-            <LoginBox setDeg = {setDeg}/>
-            <RegisterBox setDeg = {setDeg}/>
+            <LoginBox setDeg={setDeg} />
+            <RegisterBox setDeg={setDeg} />
           </div>
         </div>
       </div>

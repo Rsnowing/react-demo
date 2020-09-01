@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import register from '../../store/action/register';
-import { withRouter } from 'react-router-dom';
-import { useBack } from '../../common/hook/index';
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import register from "../../store/action/register";
+import { withRouter } from "react-router-dom";
+import { useBack } from "../../common/hook/index";
 function RegisterBox(props) {
-  const [user, setUser] = useState('');
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
-  const [vcode, setVcode] = useState('');
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [vcode, setVcode] = useState("");
   const [vcodeShow, setVcodeShow] = useState(false);
-  const [vcodeSrc, setVcodeSrc] = useState('/miaov/user/verify?' + Date.now());
+  const [vcodeSrc, setVcodeSrc] = useState("/miaov/user/verify?" + Date.now());
   const back = useBack(props.history);
   const { setDeg } = props;
   function toRegister() {
@@ -19,17 +19,17 @@ function RegisterBox(props) {
           verify: vcode,
           username: user,
           password,
-          repassword: password2,
+          repassword: password2
         })
       )
-      .then((data) => {
+      .then(data => {
         alert(data.msg);
         //console.log(data);
         setTimeout(() => {
           if (data.code == 0) {
             setDeg(0);
           }
-          setVcodeSrc('/miaov/user/verify?' + Date.now());
+          setVcodeSrc("/miaov/user/verify?" + Date.now());
         }, 100);
       });
   }
@@ -43,7 +43,7 @@ function RegisterBox(props) {
             type="text"
             placeholder="用户名"
             value={user}
-            onChange={(e) => {
+            onChange={e => {
               setUser(e.target.value);
             }}
           />
@@ -53,7 +53,7 @@ function RegisterBox(props) {
             type="password"
             placeholder="请输入密码"
             value={password}
-            onChange={(e) => {
+            onChange={e => {
               setPassword(e.target.value);
             }}
           />
@@ -63,7 +63,7 @@ function RegisterBox(props) {
             type="password"
             placeholder="请确认密码"
             value={password2}
-            onChange={(e) => {
+            onChange={e => {
               setPassword2(e.target.value);
             }}
           />
@@ -73,7 +73,7 @@ function RegisterBox(props) {
             type="text"
             placeholder="验证码"
             value={vcode}
-            onChange={(e) => {
+            onChange={e => {
               setVcode(e.target.value);
             }}
             onFocus={() => {
@@ -85,27 +85,27 @@ function RegisterBox(props) {
             <img
               className="verify"
               src={vcodeSrc}
-              onTouchStart={(e) => {
+              onTouchStart={e => {
                 let touch = e.changedTouches[0];
                 point.x = touch.pageX;
                 point.y = touch.pageY;
               }}
-              onTouchEnd={(e) => {
+              onTouchEnd={e => {
                 let touch = e.changedTouches[0];
                 let nowPoint = {
                   x: touch.pageX,
-                  y: touch.pageY,
+                  y: touch.pageY
                 };
                 if (
                   Math.abs(nowPoint.x - point.x) < 5 &&
                   Math.abs(nowPoint.y - point.y) < 5
                 ) {
-                  setVcodeSrc('/miaov/user/verify?' + Date.now());
+                  setVcodeSrc("/miaov/user/verify?" + Date.now());
                 }
               }}
             />
           ) : (
-            ''
+            ""
           )}
         </p>
         <button className="form_btn" onClick={toRegister}>
@@ -125,4 +125,4 @@ function RegisterBox(props) {
     </div>
   );
 }
-export default connect((res) => res)(withRouter(RegisterBox));
+export default connect(res => res)(withRouter(RegisterBox));
